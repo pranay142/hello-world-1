@@ -19,10 +19,11 @@ pipeline {
 			    echo 'ls -l'
 			}
 		}
-		stage('Verify')
+		stage('Verify') {
 		    agent any
 			steps {
 			  sh 'docker image ls'
 			}
+		}
     }
 }
