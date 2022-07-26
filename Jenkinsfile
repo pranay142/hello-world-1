@@ -14,7 +14,7 @@ pipeline {
             }
         }
 		stage('Bake') {
-			agent { dockerfile { additionalBuildArgs '-t mytag' } }
+			agent { dockerfile { additionalBuildArgs '-t mytag:$BUILD_NUMBER' } }
 		    /*agent { 
                         docker { 
                             image 'maven:3.8.4-openjdk-11-slim' 
