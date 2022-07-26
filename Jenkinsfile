@@ -15,6 +15,9 @@ pipeline {
         }
 		stage('Bake') {
 		    agent { dockerfile true }
+			steps {
+			    echo 'ls -l'
+			}
 		}
     }
 }
