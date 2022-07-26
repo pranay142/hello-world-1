@@ -22,7 +22,7 @@ pipeline {
                     }
 			steps {
 			    echo 'ls -l'
-			    pwd
+			    sh 'pwd'
 			}
 		}
     }
