@@ -14,16 +14,15 @@ pipeline {
             }
         }
 		stage('Bake') {
-			agent { dockerfile { additionalBuildArgs '-t mytag:$BUILD_NUMBER' } }
-		    /*agent { 
-                        docker { 
-                            image 'maven:3.8.4-openjdk-11-slim' 
-                        }
-                    }*/
+		    agent { dockerfile true }
 			steps {
 			    echo 'ls -l'
-			    sh 'pwd'
 			}
 		}
+		stage('Verify')
+		    agent any
+			steps {
+			  sh 'docker image ls'
+			}
     }
 }
