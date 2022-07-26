@@ -1,7 +1,6 @@
-# Pull base image 
-From tomcat:8-jre8 
+FROM tomcat:jre8-openjdk-slim
+
+RUN cp -R /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/
 
 # Maintainer 
-MAINTAINER "valaxytech@gmail.com" 
-COPY ./webapp.war /usr/local/tomcat/webapps
-
+COPY /tmp/webapp.war /usr/local/tomcat/webapps
