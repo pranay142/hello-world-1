@@ -13,5 +13,8 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+		stage('Bake') {
+		    agent { dockerfile true }
+		}
     }
 }
