@@ -25,5 +25,15 @@ pipeline {
 			  sh 'docker image ls'
 			}
 		}
+	    		stage('Deploy') {
+		    agent any
+			steps {
+			  input(
+			    message: 'Ready to deploy?'
+				ok: 'Yes'
+			  )
+			  echo 'Starting deployment'
+			}
+		}
     }
 }
