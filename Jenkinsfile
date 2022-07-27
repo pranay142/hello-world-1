@@ -32,7 +32,7 @@ pipeline {
 			    message: 'Ready to deploy?',
 				ok: 'Yes'
 			  )
-			  echo 'Starting deployment'
+			  sh 'docker container run -itd -p 8081:8080 mytag:$BUILD_NUMBER'
 			}
 		}
     }
