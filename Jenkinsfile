@@ -29,7 +29,7 @@ pipeline {
 		    agent any
 			steps {
 			  input(
-			    message: 'Ready to deploy?'
+			    message: 'Ready to deploy?',
 				ok: 'Yes'
 			  )
 			  echo 'Starting deployment'
