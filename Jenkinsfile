@@ -1,4 +1,23 @@
 pipeline {
+    agent none 
+    stages {
+        stage('build') {
+		   agent {
+		     docker { 
+                image 'maven:3.8.4-openjdk-11-slim' 
+                args '-v /tmp:/tmp'
+                }
+              steps {
+                git 'https://github.com/pranay142/hello-world-1.git'
+                sh 'mvn --version'
+                sh 'mvn clean install'
+                }
+			}
+        }
+    }
+}
+
+pipeline {
     agent none
     stages {
         stage('build') {
@@ -14,7 +33,7 @@ pipeline {
             }
         }
 		stage('Bake') {
-		    agent { dockerfile true }
+		    agent { dockerfile { additionalBuildArgs '-t mytag:$BUILD_NUMBER' } }
 			steps {
 			    echo 'ls -l'
 			}
@@ -25,7 +44,7 @@ pipeline {
 			  sh 'docker image ls'
 			}
 		}
-	    		stage('Deploy') {
+		stage('Deploy') {
 		    agent any
 			steps {
 			  input(
